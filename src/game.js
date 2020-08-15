@@ -1,5 +1,5 @@
 import * as g from './globals.js';
-import {draw as drawTile} from './tile.js';
+import Tile from './tile.js';
 
 class Game {
 	constructor(w, h, numMines) {
@@ -10,16 +10,15 @@ class Game {
 		for (let y = 0; y < h; y++) {
 			this.field.push(Array());
 			for (let x = 0; x < w; x++) {
-				this.field[y].push(g.tile.covered);
+				this.field[y].push(new Tile(g.tile.empty, x, y));
 			}
 		}
-		this.field[4][7] = g.tile.mine;
 	}
 
 	draw(ctx) {
 		for (let y = 0; y < this.h; y++) {
 			for (let x = 0; x < this.w; x++) {
-				drawTile(ctx, this.field[y][x], x, y);
+				this.field[y][x].draw(ctx);
 			}
 		}
 

@@ -23,7 +23,24 @@ sprites[g.tile.mine] = {x: 85, y: 49};
 sprites[g.tile.mineExploded] = {x: 102, y: 49};
 sprites[g.tile.mineCrossed] = {x: 119, y: 49};
 
-export const draw = (ctx, tile, x, y) => {
-	const t = sprites[tile];
-	ctx.drawImage(sheet, t.x, t.y, g.tileW, g.tileH, x*g.tileW, y*g.tileH, g.tileW, g.tileH);
-};
+export default class Tile {
+	constructor(type, x, y) {
+		this.x = x;
+		this.y = y;
+		this.type = type;
+		this.covered = true;
+	}
+
+	uncover() {
+		this.covered = false;
+	}
+
+	draw(ctx) {
+		let t = sprites[this.type];
+		if (this.covered) {
+			t = sprites[g.tile.covered];
+		}
+
+		ctx.drawImage(sheet, t.x, t.y, g.tileW, g.tileH, this.x*g.tileW, this.y*g.tileH, g.tileW, g.tileH);
+	}
+}
