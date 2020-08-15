@@ -1,13 +1,13 @@
 import * as g from './globals.js';
-
-import '../static/css/style.css';
+import game from './game.js';
+import '../static/style.css';
 
 const urlParams = new URLSearchParams(window.location.search);
 function createCanvas() {
 	let el = document.createElement('canvas');
 	el.setAttribute("id", "screen");
-	el.setAttribute("width", g.TILE_W * g.numTilesX);
-	el.setAttribute("height", g.TILE_H * g.numTilesY);
+	el.setAttribute("width", g.tileW * g.numTilesX);
+	el.setAttribute("height", g.tileH * g.numTilesY);
 
 	if (urlParams.has("w")) {
 		el.setAttribute("style", `width: ${urlParams.get("w")}px;`);
@@ -42,5 +42,5 @@ window.addEventListener("mouseup", e => {
 
 const draw = () => {
 	ctx.clearRect(0, 0, screen.width, screen.height);
-	ctx.fillText("Minesweeper", screen.width/2, screen.height/2);
+	game.draw(ctx);
 };
