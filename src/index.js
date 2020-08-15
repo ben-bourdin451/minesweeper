@@ -1,5 +1,5 @@
 import * as g from './globals.js';
-import game from './game.js';
+import Game from './game.js';
 import '../static/style.css';
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -22,6 +22,12 @@ let screen = document.getElementById("screen");
 let ctx = screen.getContext("2d");
 ctx.font = "15px sans-serif";
 
+const game = new Game(g.numTilesX, g.numTilesY, 2);
+const draw = () => {
+	ctx.clearRect(0, 0, screen.width, screen.height);
+	game.draw(ctx);
+};
+
 window.onload = (e) => {
 	draw();
 };
@@ -39,8 +45,3 @@ window.addEventListener("mousemove", e => {
 window.addEventListener("mouseup", e => {
 	// main logic for pressing buttons
 });
-
-const draw = () => {
-	ctx.clearRect(0, 0, screen.width, screen.height);
-	game.draw(ctx);
-};

@@ -7,11 +7,12 @@ export const numTilesY = 16;
 
 export const tile = {
 	// 1-8 are reserved for hints
-	empty: "e",
 	covered: "c",
+	empty: "e",
 	flag: "f",
+	mark: "?",
+	markPressed: "!",
 	mine: "m",
 	mineExploded: "M",
 	mineCrossed: "x",
-	mark: "?",
 };

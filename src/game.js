@@ -26,4 +26,4 @@ class Game {
 	}
 }
 
-export default new Game(g.numTilesX, g.numTilesY, 2);
+export default Game;
